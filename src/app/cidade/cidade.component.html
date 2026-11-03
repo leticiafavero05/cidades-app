@@ -1,0 +1,49 @@
+<div class="container my-4">
+  <h2>Cadastro de Cidades</h2>
+
+  <form [formGroup]="form" (ngSubmit)="cadastrar()" class="row g-3 mb-4">
+    <div class="col-md-6">
+      <label class="form-label">Nome</label>
+      <input type="text" class="form-control" formControlName="nome" />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Estado</label>
+      <input type="text" class="form-control" formControlName="estado" />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">População</label>
+      <input type="number" class="form-control" formControlName="populacao" />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Área em km²</label>
+      <input type="number" class="form-control" formControlName="area" />
+    </div>
+    <div class="col-12">
+      <label class="form-label">Descrição</label>
+      <textarea class="form-control" rows="2" formControlName="descricao"></textarea>
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        Cadastrar
+      </button>
+    </div>
+  </form>
+
+  <h3>Cidades cadastradas</h3>
+  <div class="row">
+    @for (c of cidades; track $index) {
+      <div class="col-md-4 mb-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ c.nome }} - {{ c.estado }}</h5>
+            <p class="card-text">{{ c.descricao }}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">População: {{ c.populacao }}</li>
+            <li class="list-group-item">Área: {{ c.area }} km²</li>
+          </ul>
+        </div>
+      </div>
+    }
+  </div>
+</div>
